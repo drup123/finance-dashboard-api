@@ -53,7 +53,7 @@ public class FinancialRecordService {
 
         User creator = userService.findByEmail(creatorEmail);
 
-        // ❌ removed builder → ✅ using setters
+       
         FinancialRecord record = new FinancialRecord();
         record.setAmount(request.getAmount());
         record.setType(request.getType());
@@ -61,7 +61,7 @@ public class FinancialRecordService {
         record.setDate(request.getDate());
         record.setNotes(request.getNotes());
         record.setCreatedBy(creator);
-        record.setDeleted(false); // important for soft delete
+        record.setDeleted(false); 
 
         return RecordResponse.from(recordRepository.save(record));
     }
@@ -84,7 +84,7 @@ public class FinancialRecordService {
     public void deleteRecord(Long id) {
 
         FinancialRecord record = findRecordOrThrow(id);
-        record.setDeleted(true);   // soft delete
+        record.setDeleted(true);   
         recordRepository.save(record);
     }
 
