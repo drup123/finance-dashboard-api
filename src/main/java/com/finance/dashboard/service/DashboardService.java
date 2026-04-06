@@ -25,7 +25,7 @@ public class DashboardService {
         BigDecimal totalIncome  = recordRepository.sumIncome();
         BigDecimal totalExpense = recordRepository.sumExpense();
 
-        // Handle nulls (important!)
+        
         if (totalIncome == null) totalIncome = BigDecimal.ZERO;
         if (totalExpense == null) totalExpense = BigDecimal.ZERO;
 
@@ -40,7 +40,6 @@ public class DashboardService {
                 .map(RecordResponse::from)
                 .toList();
 
-        // ❌ removed builder → ✅ using setters
         DashboardSummary summary = new DashboardSummary();
         summary.setTotalIncome(totalIncome);
         summary.setTotalExpenses(totalExpense);
@@ -52,9 +51,7 @@ public class DashboardService {
         return summary;
     }
 
-    // -----------------------------------------------------------------------
-    // Private helpers
-    // -----------------------------------------------------------------------
+
 
     private Map<String, Map<String, BigDecimal>> buildCategoryWise() {
         List<Object[]> rows = recordRepository.categoryWiseTotals();
