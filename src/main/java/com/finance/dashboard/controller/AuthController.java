@@ -19,10 +19,7 @@ public class AuthController {
         this.authService = authService;
     }
 
-    /**
-     * POST /api/auth/login
-     * Authenticate with email + password → returns JWT.
-     */
+   
     @PostMapping("/login")
     public ResponseEntity<ApiResponse<AuthResponse>> login(
             @Valid @RequestBody LoginRequest request) {
@@ -30,11 +27,7 @@ public class AuthController {
         return ResponseEntity.ok(ApiResponse.ok("Login successful", response));
     }
 
-    /**
-     * POST /api/auth/register
-     * Self-registration (open endpoint). Role must be provided in the body.
-     * In production you would lock this down or limit roles.
-     */
+    
     @PostMapping("/register")
     public ResponseEntity<ApiResponse<AuthResponse>> register(
             @Valid @RequestBody CreateUserRequest request) {
