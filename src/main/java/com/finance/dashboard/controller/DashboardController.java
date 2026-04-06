@@ -19,14 +19,7 @@ public class DashboardController {
         this.dashboardService = dashboardService;
     }
 
-    /**
-     * GET /api/dashboard/summary
-     * VIEWER, ANALYST, ADMIN – full dashboard summary:
-     *   - total income / expense / net balance
-     *   - category-wise totals
-     *   - monthly trends
-     *   - 10 most recent records
-     */
+  
     @GetMapping("/summary")
     @PreAuthorize("hasAnyRole('VIEWER','ANALYST','ADMIN')")
     public ResponseEntity<ApiResponse<DashboardSummary>> getSummary() {
