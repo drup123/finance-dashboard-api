@@ -16,7 +16,7 @@ public class AuthResponse {
     }
 
 	public String getToken() {
-		// TODO Auto-generated method stub
+		
 		return token;
 	}
 
