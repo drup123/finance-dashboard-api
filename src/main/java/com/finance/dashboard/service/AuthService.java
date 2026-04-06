@@ -64,7 +64,7 @@ public class AuthService {
             throw new BadRequestException("Email is already in use: " + request.getEmail());
         }
 
-        // ❌ removed builder → ✅ using setters
+       
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
