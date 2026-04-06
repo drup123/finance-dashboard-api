@@ -21,7 +21,7 @@ public class UserDetailsImpl implements UserDetails {
         this.email = user.getEmail();
         this.password = user.getPassword();
         this.active = user.isActive();
-        // Role stored as ROLE_<ROLE_NAME> so Spring Security can use @PreAuthorize("hasRole(...)")
+        
         this.authorities = List.of(new SimpleGrantedAuthority("ROLE_" + user.getRole().name()));
     }
 
