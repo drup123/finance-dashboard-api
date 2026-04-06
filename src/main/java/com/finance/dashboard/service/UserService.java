@@ -46,7 +46,7 @@ public class UserService {
             throw new BadRequestException("Email already in use: " + request.getEmail());
         }
 
-        // ❌ removed builder → ✅ using setters
+        
         User user = new User();
         user.setName(request.getName());
         user.setEmail(request.getEmail());
@@ -81,12 +81,12 @@ public class UserService {
     public void deleteUser(Long id) {
         User user = findUserOrThrow(id);
 
-        // Soft delete → deactivate
+       
         user.setActive(false);
         userRepository.save(user);
     }
 
-    // Helper methods
+    
 
     public User findUserOrThrow(Long id) {
         return userRepository.findById(id)
