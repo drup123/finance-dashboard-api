@@ -26,18 +26,7 @@ public class FinancialRecordController {
         this.recordService = recordService;
     }
 
-    /**
-     * GET /api/records
-     * VIEWER, ANALYST, ADMIN – list records with optional filters + pagination.
-     *
-     * Query params:
-     *   type       – INCOME | EXPENSE
-     *   category   – case-insensitive exact match
-     *   startDate  – yyyy-MM-dd
-     *   endDate    – yyyy-MM-dd
-     *   page       – 0-based page index (default 0)
-     *   size       – page size (default 10)
-     */
+   
     @GetMapping
     @PreAuthorize("hasAnyRole('VIEWER','ANALYST','ADMIN')")
     public ResponseEntity<ApiResponse<Page<RecordResponse>>> getRecords(
@@ -53,20 +42,14 @@ public class FinancialRecordController {
         return ResponseEntity.ok(ApiResponse.ok(records));
     }
 
-    /**
-     * GET /api/records/{id}
-     * VIEWER, ANALYST, ADMIN – get a single record.
-     */
+   
     @GetMapping("/{id}")
     @PreAuthorize("hasAnyRole('VIEWER','ANALYST','ADMIN')")
     public ResponseEntity<ApiResponse<RecordResponse>> getRecordById(@PathVariable Long id) {
         return ResponseEntity.ok(ApiResponse.ok(recordService.getRecordById(id)));
     }
 
-    /**
-     * POST /api/records
-     * ANALYST, ADMIN only – create a new record.
-     */
+    
     @PostMapping
     @PreAuthorize("hasAnyRole('ANALYST','ADMIN')")
     public ResponseEntity<ApiResponse<RecordResponse>> createRecord(
@@ -77,10 +60,7 @@ public class FinancialRecordController {
         return ResponseEntity.status(201).body(ApiResponse.ok("Record created", created));
     }
 
-    /**
-     * PUT /api/records/{id}
-     * ADMIN only – update an existing record.
-     */
+    
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<RecordResponse>> updateRecord(
@@ -90,10 +70,7 @@ public class FinancialRecordController {
         return ResponseEntity.ok(ApiResponse.ok("Record updated", recordService.updateRecord(id, request)));
     }
 
-    /**
-     * DELETE /api/records/{id}
-     * ADMIN only – soft-delete a record.
-     */
+   
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Void>> deleteRecord(@PathVariable Long id) {
