@@ -55,7 +55,7 @@ public class CreateUserRequest {
 	}
 
 	public String getEmail() {
-		// TODO Auto-generated method stub
+		
 		return email;
 	}
 }
