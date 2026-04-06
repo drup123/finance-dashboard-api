@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
         uniqueConstraints = @UniqueConstraint(columnNames = "email"))
 public class User {
 
-    // 🔹 Fields
+   
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -41,12 +41,9 @@ public class User {
 
     private LocalDateTime updatedAt;
 
-    // 🔹 Constructors
+    
 
-    // No-args constructor (required by JPA)
-    public User() {}
-
-    // All-args constructor
+    
     public User(Long id, String name, String email, String password,
                 Role role, boolean active,
                 LocalDateTime createdAt, LocalDateTime updatedAt) {
@@ -60,7 +57,7 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    // 🔹 Getters & Setters
+    
 
     public Long getId() {
         return id;
@@ -90,9 +87,9 @@ public class User {
         return password;
     }
 
-    // Example: custom logic
+   
     public void setPassword(String password) {
-        this.password = password; // you can hash here later
+        this.password = password; 
     }
 
     public Role getRole() {
@@ -103,7 +100,7 @@ public class User {
         this.role = role;
     }
 
-    public boolean isActive() {   // boolean uses "is"
+    public boolean isActive() {   
         return active;
     }
 
@@ -127,7 +124,7 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    // 🔹 Lifecycle Hooks
+    
 
     @PrePersist
     protected void onCreate() {
