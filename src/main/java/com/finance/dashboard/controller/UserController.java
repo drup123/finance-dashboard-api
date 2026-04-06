@@ -22,30 +22,20 @@ public class UserController {
         this.userService = userService;
     }
 
-    /**
-     * GET /api/users
-     * ADMIN only: list all users.
-     */
     @GetMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<List<UserResponse>>> getAllUsers() {
         return ResponseEntity.ok(ApiResponse.ok(userService.getAllUsers()));
     }
 
-    /**
-     * GET /api/users/{id}
-     * ADMIN only: get a single user.
-     */
+    
     @GetMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<UserResponse>> getUserById(@PathVariable Long id) {
         return ResponseEntity.ok(ApiResponse.ok(userService.getUserById(id)));
     }
 
-    /**
-     * POST /api/users
-     * ADMIN only: create a user (different from self-registration).
-     */
+    
     @PostMapping
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<UserResponse>> createUser(
@@ -54,10 +44,7 @@ public class UserController {
         return ResponseEntity.status(201).body(ApiResponse.ok("User created", created));
     }
 
-    /**
-     * PUT /api/users/{id}
-     * ADMIN only: update name, role, or active status.
-     */
+    
     @PutMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<UserResponse>> updateUser(
@@ -66,10 +53,7 @@ public class UserController {
         return ResponseEntity.ok(ApiResponse.ok("User updated", userService.updateUser(id, request)));
     }
 
-    /**
-     * DELETE /api/users/{id}
-     * ADMIN only: soft-deactivate a user.
-     */
+    
     @DeleteMapping("/{id}")
     @PreAuthorize("hasRole('ADMIN')")
     public ResponseEntity<ApiResponse<Void>> deleteUser(@PathVariable Long id) {
