@@ -17,10 +17,10 @@ import java.util.Optional;
 @Repository
 public interface FinancialRecordRepository extends JpaRepository<FinancialRecord, Long> {
 
-    // Find non-deleted record by id
+    
     Optional<FinancialRecord> findByIdAndDeletedFalse(Long id);
 
-    // All active records with optional filters (paginated)
+    
     @Query("""
             SELECT r FROM FinancialRecord r
             WHERE r.deleted = false
@@ -38,19 +38,19 @@ public interface FinancialRecordRepository extends JpaRepository<FinancialRecord
             Pageable pageable
     );
 
-    // Sum of all INCOME
+    
     @Query("SELECT COALESCE(SUM(r.amount), 0) FROM FinancialRecord r WHERE r.deleted = false AND r.type = 'INCOME'")
     BigDecimal sumIncome();
 
-    // Sum of all EXPENSE
+    
     @Query("SELECT COALESCE(SUM(r.amount), 0) FROM FinancialRecord r WHERE r.deleted = false AND r.type = 'EXPENSE'")
     BigDecimal sumExpense();
 
-    // Category-wise totals
+    
     @Query("SELECT r.category, r.type, SUM(r.amount) FROM FinancialRecord r WHERE r.deleted = false GROUP BY r.category, r.type ORDER BY r.category")
     List<Object[]> categoryWiseTotals();
 
-    // Monthly trends
+    
     @Query("""
             SELECT YEAR(r.date), MONTH(r.date), r.type, SUM(r.amount)
             FROM FinancialRecord r
@@ -60,7 +60,7 @@ public interface FinancialRecordRepository extends JpaRepository<FinancialRecord
             """)
     List<Object[]> monthlyTrends();
 
-    // Recent N records
+    
     @Query("SELECT r FROM FinancialRecord r WHERE r.deleted = false ORDER BY r.createdAt DESC")
     List<FinancialRecord> findRecentActivity(Pageable pageable);
 }
