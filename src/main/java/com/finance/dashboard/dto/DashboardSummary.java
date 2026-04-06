@@ -12,7 +12,7 @@ public class DashboardSummary {
     private BigDecimal totalExpenses;
     private BigDecimal netBalance;
 
-    // category -> { INCOME: amount, EXPENSE: amount }
+    
     private Map<String, Map<String, BigDecimal>> categoryWiseTotals;
 
     public BigDecimal getTotalIncome() {
@@ -63,7 +63,7 @@ public class DashboardSummary {
 		this.recentActivity = recentActivity;
 	}
 
-	// "YYYY-MM" -> { INCOME: amount, EXPENSE: amount }
+	
     private Map<String, Map<String, BigDecimal>> monthlyTrends;
 
     private List<RecordResponse> recentActivity;
