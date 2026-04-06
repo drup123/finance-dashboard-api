@@ -119,7 +119,7 @@ public class FinancialRecord {
     private String notes;
 
     @Column(nullable = false)
-    private boolean deleted;   // soft-delete flag
+    private boolean deleted;   
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "created_by", nullable = false)
